@@ -42,7 +42,7 @@ sensorLat = "41.9933"
 sensorLong = "-70.7285"
 # set crypto info
 ssl_private_key_filepath="../certs/rsa_private.pem"
-ssl_algorithm="RS256_X509"
+ssl_algorithm="RS256"
 root_cert_filepath="../certs/rsa_cert.pem"
 project_id=project
 token_life = 60
