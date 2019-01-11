@@ -30,7 +30,7 @@ me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running
 # constants - change to fit your project and location
 SEND_INTERVAL = 60 #seconds
 sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
-credentials = GoogleCredentials.get_application_default()
+# credentials = GoogleCredentials.get_application_default()
 # change project to your Project ID
 project="pi-iot-sensor-project01"
 # change topic to your PubSub topic name
