@@ -21,3 +21,26 @@ exports.subscribe = function (event, callback) {
   const bigquery = BigQuery({
     projectId: projectId
   });
+
+  // Inserts data into a table
+  bigquery
+    .dataset(datasetId)
+    .table(tableId)
+    .insert(rows)
+    .then((foundErrors) => {
+      rows.forEach((row) => console.log('Inserted: ', row));
+
+      if (foundErrors && foundErrors.insertErrors != undefined) {
+        foundErrors.forEach((err) => {
+            console.log('Error: ', err);
+        })
+      }
+    })
+    .catch((err) => {
+      console.error('ERROR:', err);
+    });
+  // [END bigquery_insert_stream]
+
+
+  callback();
+};
