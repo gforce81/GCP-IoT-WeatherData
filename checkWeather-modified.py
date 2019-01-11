@@ -137,9 +137,9 @@ def main():
             print("{}\n".format(weatherJSON))
             time.sleep(0.5)
             previousInput = inputReceived
-          except Exception as e:
-      print "There was an error"
-      print (e)
+        except Exception as e:
+          print "There was an error"
+          print (e)
     
       client.loop_stop()
 if __name__ == '__main__':
