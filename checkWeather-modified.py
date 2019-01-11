@@ -96,12 +96,7 @@ def createJSON(id, timestamp, zip, lat, long, temperature, humidity, dewpoint, p
     json_str = json.dumps(data)
     return json_str
 
-def main():
-    args = parse_command_line_args()
-    googleMQTTURL = args.mqtt_bridge_hostname
-    googleMQTTPort = args.mqtt_bridge_port
-    receiver_in = args.receiver_in
-    
+def main():  
     _CLIENT_ID = 'projects/{}/locations/{}/registries/{}/devices/{}'.format(project_id, gcp_location, registry_id, device_id)
     _MQTT_TOPIC = '/devices/{}/events'.format(device_id)
   
