@@ -80,6 +80,15 @@ def read_sensor(weathersensor):
     pres = '{0:0.2f}'.format(pressureInches)
     return (temp, hum, dew, pres)
 
+def error_str(rc):
+    return '{}: {}'.format(rc, mqtt.error_string(rc))
+
+def on_connect(unusued_client, unused_userdata, unused_flags, rc):
+    print('on_connect', error_str(rc))
+
+def on_publish(unused_client, unused_userdata, unused_mid):
+    print('on_publish')
+
 def createJSON(id, timestamp, zip, lat, long, temperature, humidity, dewpoint, pressure):
     data = {
       'sensorID' : id,
