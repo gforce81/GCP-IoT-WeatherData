@@ -41,9 +41,9 @@ sensorZipCode = "02364"
 sensorLat = "41.9933"
 sensorLong = "-70.7285"
 # set crypto info
-ssl_private_key_filepath="../certs/rsa_private.pem"
+ssl_private_key_filepath="../certs/ec_private.pem"
 ssl_algorithm="RS256"
-root_cert_filepath="../certs/rsa_cert.pem"
+root_cert_filepath="../certs/roots.pem"
 project_id=project
 token_life = 60
 # set MQTT info
