@@ -126,19 +126,20 @@ def main():
 
       last_checked = 0
       while time.time() < jwt_refresh: # as long as the JWT isn't ready to expire, otherwise break this loop so the JWT gets refreshed
-        if time.time() - last_checked > SEND_INTERVAL:
-          last_checked = time.time()
-          temp, hum, dew, pres = read_sensor(sensor)
-          currentTime = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-          s = ", "
-          weatherJSON = createJSON(sensorID, currentTime, sensorZipCode, sensorLat, sensorLong, temp, hum, dew, pres)
-          client.publish(_MQTT_TOPIC, weatherJSON, qos=1)
-          print("{}\n".format(weatherJSON))
-          time.sleep(0.5)
-          previousInput = inputReceived
-        except Exception as e:
-    print "There was an error"
-    print (e)
+        try:
+          if time.time() - last_checked > SEND_INTERVAL:
+            last_checked = time.time()
+            temp, hum, dew, pres = read_sensor(sensor)
+            currentTime = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+            s = ", "
+            weatherJSON = createJSON(sensorID, currentTime, sensorZipCode, sensorLat, sensorLong, temp, hum, dew, pres)
+            client.publish(_MQTT_TOPIC, weatherJSON, qos=1)
+            print("{}\n".format(weatherJSON))
+            time.sleep(0.5)
+            previousInput = inputReceived
+          except Exception as e:
+      print "There was an error"
+      print (e)
     
       client.loop_stop()
 if __name__ == '__main__':
