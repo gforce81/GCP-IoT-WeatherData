@@ -139,7 +139,6 @@ def main():
             client.publish(_MQTT_TOPIC, weatherJSON, qos=1)
             print("{}\n".format(weatherJSON))
             time.sleep(0.5)
-            previousInput = inputReceived
         except Exception as e:
           print "There was an error"
           print (e)
