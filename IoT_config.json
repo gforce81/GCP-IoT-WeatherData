@@ -27,7 +27,7 @@
     {
         "gcp_location": "us-central1",
         "registry_id": "Pi3-BME280-Nodes",
-        "device_id": "BME280-node1",
+        "device_id": "BME280-node2",
         "googleMQTTURL": "mqtt.googleapis.com",
         "googleMQTTPort": 8883
     }
