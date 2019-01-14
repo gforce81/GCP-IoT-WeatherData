@@ -101,7 +101,7 @@ def main():
     root_cert_filepath=config['CRYPTO']['root_cert_filepath']
     token_life = config['CRYPTO']['token_life']
     ## set MQTT info
-    gcp_location=config['MQTT'][gcp_location]
+    gcp_location=config['MQTT']['gcp_location']
     registry_id=config['MQTT']['registry_id']
     device_id=config['MQTT']['device_id']
     sensorID=registry_id + "." + device_id
