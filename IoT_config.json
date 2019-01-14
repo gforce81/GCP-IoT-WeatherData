@@ -1,0 +1,34 @@
+{
+    "CONSTANTS":
+    {
+        "SEND_INTERVAL": 60,
+        "sensor": "BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)"
+    },
+    "PROJECT":
+    {
+        "project": "pi-iot-sensor-project01",
+        "topic": "bme280-events"
+    },
+    "SENSOR":
+    {
+        "sensorID": "bme280-002",
+        "sensorZipCode": "02364",
+        "sensorLat": "41.9933",
+        "sensorLong": "-70.7285"
+    },
+    "CRYPTO":
+    {
+        "ssl_private_key_filepath": "../certs/ec_private.pem",
+        "ssl_algorithm": "ES256",
+        "root_cert_filepath": "../certs/roots.pem",
+        "token_life": 60
+    },
+    "MQTT":
+    {
+        "gcp_location": "us-central1",
+        "registry_id": "Pi3-BME280-Nodes",
+        "device_id": "BME280-node1",
+        "googleMQTTURL": "mqtt.googleapis.com",
+        "googleMQTTPort": 8883
+    }
+}

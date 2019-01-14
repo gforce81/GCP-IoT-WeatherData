@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2018 Google LLC - modified by Gauthier Robe
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,34 +27,6 @@ import paho.mqtt.client as mqtt
 
 me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running
 
-# constants - change to fit your project and location
-SEND_INTERVAL = 60 #seconds
-sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
-
-# change project to your Project ID
-project="pi-iot-sensor-project01"
-# change topic to your PubSub topic name
-topic = "bme280-events"
-# set the following four constants to be indicative of where you are placing your weather sensor
-sensorID = "bme280-001"
-sensorZipCode = "02364"
-sensorLat = "41.9933"
-sensorLong = "-70.7285"
-# set crypto info
-ssl_private_key_filepath="../certs/ec_private.pem"
-ssl_algorithm="ES256"
-root_cert_filepath="../certs/roots.pem"
-project_id=project
-token_life = 60
-# set MQTT info
-gcp_location="us-central1"
-registry_id="Pi3-BME280-Nodes"
-device_id="BME280-node1"
-sensorID=registry_id + "." + device_id
-googleMQTTURL="mqtt.googleapis.com"
-googleMQTTPort="8883"
-
-	
 def create_jwt(cur_time, projectID, privateKeyFilepath, algorithmType):
   token = {
   'iat': cur_time,
@@ -106,7 +78,37 @@ def createJSON(id, timestamp, zip, lat, long, temperature, humidity, dewpoint, p
     return json_str
 
 def main():  
-    _CLIENT_ID = 'projects/{}/locations/{}/registries/{}/devices/{}'.format(project_id, gcp_location, registry_id, device_id)
+    # read configuration - change all values in JSON configuration file
+    with open('IoT_config.json', 'r') as f:
+      config = json.load(f)
+    
+    # constants - change to fit your project and location
+    SEND_INTERVAL = config['DEFAULT']['SEND_INTERVAL']#seconds
+    sensor = config['DEFAULT']['sensor']
+
+    ## change project to your Project ID
+    project=config['PROJECT']['project']
+    ## change topic to your PubSub topic name
+    topic = config['PROJECT']['topic']
+    ## set the following four constants to be indicative of where you are placing your weather sensor
+    sensorID = config['SENSOR']['sensorID']
+    sensorZipCode = config['SENSOR']['sensorZipCode']
+    sensorLat = config['SENSOR']['sensorLat']
+    sensorLong = config['SENSOR']['sensorLong']
+    ## set crypto info
+    ssl_private_key_filepath=config['CRYPTO']['ssl_private_key_filepath']
+    ssl_algorithm=config['CRYPTO']['ssl_algorithm']
+    root_cert_filepath=config['CRYPTO']['root_cert_filepath']
+    token_life = config['CRYPTO']['token_life']
+    ## set MQTT info
+    gcp_location=config['MQTT'][gcp_location]
+    registry_id=config['MQTT']['registry_id']
+    device_id=config['MQTT']['device_id']
+    sensorID=registry_id + "." + device_id
+    googleMQTTURL=config['MQTT']['googleMQTTURL']
+    googleMQTTPort=config['MQTT']['googleMQTTPort']
+    
+    _CLIENT_ID = 'projects/{}/locations/{}/registries/{}/devices/{}'.format(project, gcp_location, registry_id, device_id)
     _MQTT_TOPIC = '/devices/{}/events'.format(device_id)
   
     while True:
@@ -115,7 +117,7 @@ def main():
       # authorization is handled purely with JWT, no user/pass, so username can be whatever
       client.username_pw_set(
           username='unused',
-          password=create_jwt(cur_time, project_id, ssl_private_key_filepath, ssl_algorithm))
+          password=create_jwt(cur_time, project, ssl_private_key_filepath, ssl_algorithm))
       
       client.on_connect = on_connect
       client.on_publish = on_publish
