@@ -27,10 +27,10 @@ import paho.mqtt.client as mqtt
 
 me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running
 
-def create_jwt(cur_time, projectID, privateKeyFilepath, algorithmType):
+def create_jwt(cur_time, tokenLife, projectID, privateKeyFilepath, algorithmType):
   token = {
   'iat': cur_time,
-  'exp': cur_time + datetime.timedelta(minutes=token_life),
+  'exp': cur_time + datetime.timedelta(minutes=tokenLife),
   'aud': projectID
   }
 
@@ -117,7 +117,7 @@ def main():
       # authorization is handled purely with JWT, no user/pass, so username can be whatever
       client.username_pw_set(
           username='unused',
-          password=create_jwt(cur_time, project, ssl_private_key_filepath, ssl_algorithm))
+          password=create_jwt(cur_time, token_life, project, ssl_private_key_filepath, ssl_algorithm))
       
       client.on_connect = on_connect
       client.on_publish = on_publish
