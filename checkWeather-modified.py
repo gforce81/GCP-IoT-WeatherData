@@ -83,8 +83,8 @@ def main():
       config = json.load(f)
     
     # constants - change to fit your project and location
-    SEND_INTERVAL = config['DEFAULT']['SEND_INTERVAL']#seconds
-    sensor = config['DEFAULT']['sensor']
+    SEND_INTERVAL = config['CONSTANTS']['SEND_INTERVAL']#seconds
+    sensor = config['CONSTANTS']['sensor']
 
     ## change project to your Project ID
     project=config['PROJECT']['project']
