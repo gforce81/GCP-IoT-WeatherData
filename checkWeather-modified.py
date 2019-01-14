@@ -19,8 +19,8 @@ import datetime
 import uuid
 import json
 import jwt
-from google.cloud import pubsub
-from oauth2client.client import GoogleCredentials
+# from google.cloud import pubsub
+# from oauth2client.client import GoogleCredentials
 from Adafruit_BME280 import *
 from tendo import singleton
 import paho.mqtt.client as mqtt
