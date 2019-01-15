@@ -93,9 +93,7 @@ Pin 9 (Ground) -> GND
 
 ```
 
-(insert schematic)
-
-(insert photo)
+![alt text](screenshots/wiring.jpg "wiring")
 
   
 
