@@ -85,7 +85,7 @@ def main():
     # constants - change to fit your project and location
     SEND_INTERVAL = config['CONSTANTS']['SEND_INTERVAL']#seconds
     # sensor = config['CONSTANTS']['sensor']
-    sendor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
+    sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
     print "Sensor Info: " + sensor
 
     ## change project to your Project ID
