@@ -71,7 +71,7 @@ Optional:
 
 * 5.2V, 3A power supply to supply both the Raspberry Pi and the touch display ([amazon link](https://www.amazon.com/gp/product/B01HB44IE6/ref=ppx_yo_dt_b_asin_title_o01__o00_s00?ie=UTF8&psc=1))
 
-(insert photo)
+![alt text](screenshots/pi_components.jpg "components")
 
   
 
