@@ -1,6 +1,7 @@
 # IoT Weather Station (Temperature, Pressure, Humidity, DewPoint) with BME280 sensor
 
 This project is based on on Google Cloud's Codelab example: https://codelabs.developers.google.com/codelabs/iot-data-pipeline/index.html
+
 It was modified to include:
 - Google Cloud IoT Core
 - MQTT and ES256 for security
@@ -43,7 +44,7 @@ Pin 9 (Ground) -> GND
 (insert schematic)
 (insert photo)
 
-## Step 1 - Raspberry Pi initial configuration
+## Step 1 - Raspberry Pi Initial Configuration
 
 From the Raspberry device:
 * Go to the Pi menu, open "Raspberry Pi Configuration"
@@ -139,14 +140,14 @@ From the Raspberry device:
 * Leave other options as default
 * Enter additional device metadata (not required)
 
-** Step 4 - Configure Google BigQuery
+## Step 4 - Configure Google BigQuery
 
-** Step 5 - Configure Google Cloud Function
+## Step 5 - Configure Google Cloud Function
 
-** Step 6 - Start Telemetry Streaming from IoT Device
+## Step 6 - Start Telemetry Streaming from IoT Device
 
-** Step 7 - Create a Dashboard
+## Step 7 - Create a Dashboard
 
-*** Step 7.1 - Google Data Studio
+### Step 7.1 - Google Data Studio
 
-*** Step 7.2 - Google GSheets
+### Step 7.2 - Google GSheets
