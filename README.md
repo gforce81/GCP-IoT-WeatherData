@@ -88,7 +88,7 @@ From the Raspberry device:
 ```
   sudo i2cdetect -y 1
 ```
-    * The response should be "77"
+* The response should be "77"
     * A result other than "77" could indicate that the type of sensor doesn’t match the one recommended and this will cause the sensor driver to not function correctly. To fix this situation, edit the Adafruit_BME280.py script. For example, if the result is showing 76, change the BME280_I2CADDR to 0x76.
 
 ## Step 2 - Setup a Google Cloud Project
@@ -149,9 +149,92 @@ From the Raspberry device:
 
 ## Step 4 - Configure Google BigQuery
 
+* From the Google Cloud Console
+    * From the left side menu, select BigQuery
+* At the BigQuery welcome screen, select
+```
+    Create a new dataset 
+```
+* Provide the requried information
+```
+    Dataset ID: weatherData
+    Data location: US
+    Data expiration: Never
+```
+* Click the "+" sign next to the new dataset to create a new table
+    * For Source Data, select "Create empty table"
+    * For Destination table name, enter "weatherDataTable"
+    * Under schema, click on "Add Field"
+    * Add the following fields:
+```
+    sensorID: STRING, NULLABLE
+    timecollected: TIMESTAMP, NULLABLE
+    zipcode: INTEGER, NULLABLE
+    latitude: FLOAT, NULLABLE
+    longitude: FLOAT, NULLABLE
+    temperature: FLOAT, NULLABLE
+    humidity: FLOAT, NULLABLE
+    dewpoint: FLOAT, NULLABLE
+    pressure: FLOAT, NULLABLE
+```
+* Create the table
+
 ## Step 5 - Configure Google Cloud Function
 
-## Step 6 - Start Telemetry Streaming from IoT Device
+* From the Google Cloud Console
+    * From the left side menu, select Cloud Functions
+* Select
+```
+    Create Function
+```
+* Provide a function name, e.g.:
+```
+     function-weatherPubSubToBQ
+```
+* Select the following parameters:
+```
+    Memory allocated: 256 MB
+    Trigger: Cloud Pub/Sub
+    Topic: e.g. bme280-events
+    Source Code: Inline Editor
+    Runtime: Node.js 6
+```
+* In the inline code editor:
+    * Under index.js: copy the content of cloudfunction.js
+    * Under package.json: copy the content of weatherFunction-pacakge.json
+* Funcion to execute:
+```
+    subscribe
+```
+* Create the cloud function
+    * It may take few minutes
+    * A green checkmark will appear
+
+## Step 6 - Send Telemetry Data
+
+### Step 6.1 - Start Capturing and Streaming Telemetry Data from IoT Device
+
+* On the Rapberry Pi:
+    * Open a terminal window
+```
+    cd GCP-IoT-WeatherData
+```
+* Start the python script to capture and stream telemetry data
+```
+    python checkWeather-modified.py
+```
+* After a very short delay, telemetry should start streaming
+
+### Step 6.2 - Check Data
+
+* Check the data is being correctly inserted in BigQuery
+* Open BigQuery
+    * Select the project -> dataset
+    * In the Query Editor, enter e.g.:
+```
+    SELECT * FROM weatherData.weahterDataTable ORDER BY timecollected
+```
+* You should see sensor data at 1min interval
 
 ## Step 7 - Create a Dashboard
 
