@@ -86,7 +86,6 @@ def main():
     SEND_INTERVAL = config['CONSTANTS']['SEND_INTERVAL']#seconds
     # sensor = config['CONSTANTS']['sensor']
     sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
-    print "Sensor Info: " + sensor
 
     ## change project to your Project ID
     project=config['PROJECT']['project']
