@@ -48,9 +48,9 @@ Pin 9 (Ground) -> GND
 
 From the Raspberry device:
 * Go to the Pi menu, open "Raspberry Pi Configuration"
-** Make sure that I2C, and SSH are enabled
-** Double check your Locale and Timezone as well
-** Reboot
+    * Make sure that I2C, and SSH are enabled
+    * Double check your Locale and Timezone as well
+    * Reboot
 * Open a terminal and clone this Github repository
 ```
 	git clone https://github.com/gforce81/GCP-IoT-WeatherData.git
@@ -94,12 +94,12 @@ From the Raspberry device:
 
 * From the Google Cloud Console menu, select APIs & Services -> Library
 * Enable the following APIs for your project:
-** BigQuery API
-** BigQuery Data Transfer API
-** Cloud Functions API
-** Cloud IoT API
-** Cloud Pub/Sub API
-** Google Cloud Realtime API
+    * BigQuery API
+    * BigQuery Data Transfer API
+    * Cloud Functions API
+    * Cloud IoT API
+    * Cloud Pub/Sub API
+    * Google Cloud Realtime API
 
 ## Step 3 - Configure Google Cloud IoT Core
 
