@@ -17,6 +17,8 @@ It was modified to include:
 ![alt text](screenshots/Complete_Device.jpeg "IoT Device")
 
 ![alt text](screenshots/BME280_Sensor.jpeg "BME280 Sensor")
+
+![alt text](screenshots/Dashboard1.png "Data Studio Dashboard")
   
 
 ## What does it do
