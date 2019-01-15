@@ -37,10 +37,12 @@ Optional:
 ### Assembly
 
 Raspberry Pi pin -> Sensor (BME280)
-Pin 1 (3.3V) - > VIN
-Pin 3 (GPIO2) -> SDA
-Pin 5 (GPIO3) -> SCL
-Pin 9 (Ground) -> GND
+```
+    Pin 1 (3.3V) - > VIN
+    Pin 3 (GPIO2) -> SDA
+    Pin 5 (GPIO3) -> SCL
+    Pin 9 (Ground) -> GND
+```
 (insert schematic)
 (insert photo)
 
@@ -234,7 +236,7 @@ From the Raspberry device:
 ```
     SELECT * FROM weatherData.weahterDataTable ORDER BY timecollected
 ```
-* You should see sensor data at 1min interval
+* You should see sensor data at 1 minute interval
 
 ## Step 7 - Create a Dashboard
 
