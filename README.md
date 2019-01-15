@@ -83,6 +83,13 @@ From the Raspberry device:
 	cd GCP-IoT-WeatherData/third_party/Adafruit_BME280
 	mv Adafruit_BME280.py ../..
 ```
+* Type in the following command to make certain that the sensor is correctly connected.
+
+```
+  sudo i2cdetect -y 1
+```
+    * The response should be "77"
+    * A result other than "77" could indicate that the type of sensor doesn’t match the one recommended and this will cause the sensor driver to not function correctly. To fix this situation, edit the Adafruit_BME280.py script. For example, if the result is showing 76, change the BME280_I2CADDR to 0x76.
 
 ## Step 2 - Setup a Google Cloud Project
 
