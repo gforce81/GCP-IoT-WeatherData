@@ -14,6 +14,9 @@ It was modified to include:
 
 - GSheets App script macro to import Google BigQuery data
 
+![alt text](screenshots/Complete_Device.jpeg "IoT Device")
+
+![alt text](screenshots/BME280_Sensor.jpeg "BME280 Sensor")
   
 
 ## What does it do
