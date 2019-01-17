@@ -2,7 +2,7 @@
 
   
 
-This project is based on on Google Cloud's Codelab example: https://codelabs.developers.google.com/codelabs/iot-data-pipeline/index.html
+This project is based on Google Cloud's Codelab example: https://codelabs.developers.google.com/codelabs/iot-data-pipeline/index.html
 
   
 
@@ -12,7 +12,7 @@ It was modified to include:
 
 - MQTT and ES256 for security
 
-- GSheets App script macro to import Google BigQuery data
+- GSheets Apps Script macro to import Google BigQuery data
 
 ![alt text](screenshots/Complete_Device.jpeg "IoT Device")
 
@@ -487,6 +487,38 @@ SELECT * FROM weatherData.weahterDataTable ORDER BY timecollected
 
 ### Step 7.1 - Google Data Studio
 
-  
+* From your web browser, go to https://datastudio.google.com
+* Under **"Start a new report"**, click on **Blank** and then click on the **Get Started** button
+* Click the checkbox to accept the terms, click the **Next** button, select which emails you are interested in receiving and click on the **Done** button. Once again, under "Start a new report", click on Blank
+* Click on the **Create New Data Source** button
+* Select **BigQuery** and authorize
+* Select the dataset and and click **Connect**
+* Make sure the fields datatype are:
+```
+    temperature -> type: Number -> Aggregation: Average
+    humidity -> type: Number -> Aggregation: Average
+    pressure -> type: Number -> Aggregation: Average
+    dewpoint -> type: Number -> Aggregation: Average
+    latitude -> type: Number -> Aggregation: None
+    longitude -> type: Number -> Aggregation: None
+    zipcode -> type: Number -> Aggregation: None
+    sensorID -> type: text -> Aggregation: None
+    timecollected -> type: DateHour -> Aggregation: None
+```
+* Click **Add to Report**
+A blank canvas is presented
+* Select **Time Series** and draw a rectangle
+* On the right hand side of the window, select the **Style** tab. Change **Missing Data** from "Line To Zero" to **"Line Breaks"**. In the Left Y-Axis section, delete the 0 from Axis Min to change it to **(Auto)**
+* In the **Data section** click on the existing metric, choose a different metric to be displayed (dewpoint, temperature, humidity and pressure)
+
+![alt text](screenshots/data_studio.png "Data Studio")
 
 ### Step 7.2 - Google GSheets
+* Open Google Apps Script Developer Hub (https://script.google.com/home/my)
+* Create a new script
+* Copy the content of **AppsScript-BQ2GSheets** and **appsscript.json**
+* Save as **Macro**
+* Create a new GSheets
+* Under **Tools -> Macros**, select **weatherData**
+
+![alt text](screenshots/GSheets-Timeline.png "GSheets Timeline")

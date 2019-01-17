@@ -1,0 +1,25 @@
+{
+    "timeZone": "America/New_York",
+    "dependencies": {
+      "enabledAdvancedServices": [{
+        "userSymbol": "BigQuery",
+        "serviceId": "bigquery",
+        "version": "v2"
+      }, {
+        "userSymbol": "Sheets",
+        "serviceId": "sheets",
+        "version": "v4"
+      }]
+    },
+    "exceptionLogging": "STACKDRIVER",
+    "executionApi": {
+      "access": "MYSELF"
+    },
+    "sheets": {
+      "macros": [{
+        "menuName": "weatherData",
+        "functionName": "runQuery",
+        "defaultShortcut": "Ctrl+Alt+Shift+b"
+      }]
+   }
+  }
