@@ -19,14 +19,13 @@ import datetime
 import uuid
 import json
 import jwt
-# from google.cloud import pubsub
-# from oauth2client.client import GoogleCredentials
 from Adafruit_BME280 import *
 from tendo import singleton
 import paho.mqtt.client as mqtt
 
 me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running
 
+# Create the JWT token
 def create_jwt(cur_time, tokenLife, projectID, privateKeyFilepath, algorithmType):
   token = {
   'iat': cur_time,
@@ -39,6 +38,7 @@ def create_jwt(cur_time, tokenLife, projectID, privateKeyFilepath, algorithmType
 
   return jwt.encode(token, private_key, algorithm=algorithmType)
 
+# Read sensor data
 def read_sensor(weathersensor):
     tempF = weathersensor.read_temperature_f()
     # pascals = sensor.read_pressure()
@@ -61,6 +61,7 @@ def on_connect(unusued_client, unused_userdata, unused_flags, rc):
 def on_publish(unused_client, unused_userdata, unused_mid):
     print('on_publish')
 
+# Create the JSON payload
 def createJSON(id, timestamp, zip, lat, long, temperature, humidity, dewpoint, pressure):
     data = {
       'sensorID' : id,
@@ -123,7 +124,7 @@ def main():
       client.on_connect = on_connect
       client.on_publish = on_publish
 
-      client.tls_set(ca_certs=root_cert_filepath) # Replace this with 3rd party cert if that was used when creating registry
+      client.tls_set(ca_certs=root_cert_filepath) # Using the Google Certs created when registering the device
       client.connect(googleMQTTURL, googleMQTTPort)
 
       jwt_refresh = time.time() + ((token_life - 1) * 60) #set a refresh time for one minute before the JWT expires
